@@ -1,0 +1,19 @@
+{
+  "name": "mzi_lossy",
+  "devices": [
+    {"id": "split1", "type": "splitter", "params": {"coupling_ratio": 0.5, "excess_loss_db": 0.5}},
+    {"id": "wg_top", "type": "waveguide", "params": {"length_m": 0.01, "neff": 2.3, "loss_db_per_m": 200}},
+    {"id": "wg_bot", "type": "waveguide", "params": {"length_m": 0.012, "neff": 2.3, "loss_db_per_m": 200}},
+    {"id": "ps_top", "type": "phaseshifter", "params": {"phase_rad": 0.7853981633974483, "insertion_loss_db": 0.2}},
+    {"id": "split2", "type": "splitter", "params": {"coupling_ratio": 0.5, "excess_loss_db": 0.5}}
+  ],
+  "links": [
+    ["split1.out0", "wg_top.in"],
+    ["split1.out1", "wg_bot.in"],
+    ["wg_top.out", "ps_top.in"],
+    ["ps_top.out", "split2.in0"],
+    ["wg_bot.out", "split2.in1"]
+  ],
+  "inputs": ["split1.in0", "split1.in1"],
+  "outputs": ["split2.out0", "split2.out1"]
+}

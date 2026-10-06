@@ -1,0 +1,17 @@
+{
+  "name": "mzi_ideal",
+  "devices": [
+    {"id": "split1", "type": "splitter", "params": {"coupling_ratio": 0.5}},
+    {"id": "arm_top", "type": "phaseshifter", "params": {"phase_rad": 0.0}},
+    {"id": "arm_bot", "type": "phaseshifter", "params": {"phase_rad": 0.0}},
+    {"id": "split2", "type": "splitter", "params": {"coupling_ratio": 0.5}}
+  ],
+  "links": [
+    ["split1.out0", "arm_top.in"],
+    ["split1.out1", "arm_bot.in"],
+    ["arm_top.out", "split2.in0"],
+    ["arm_bot.out", "split2.in1"]
+  ],
+  "inputs": ["split1.in0", "split1.in1"],
+  "outputs": ["split2.out0", "split2.out1"]
+}

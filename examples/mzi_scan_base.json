@@ -1,0 +1,15 @@
+{
+  "name": "mzi",
+  "devices": [
+    {"id": "s1", "type": "splitter", "params": {"coupling_ratio": 0.5}},
+    {"id": "top", "type": "phaseshifter", "params": {"phase_rad": 0}},
+    {"id": "bot", "type": "phaseshifter", "params": {"phase_rad": 0}},
+    {"id": "s2", "type": "splitter", "params": {"coupling_ratio": 0.5}}
+  ],
+  "links": [
+    ["s1.out0", "top.in"], ["s1.out1", "bot.in"],
+    ["top.out", "s2.in0"], ["bot.out", "s2.in1"]
+  ],
+  "inputs": ["s1.in0", "s1.in1"],
+  "outputs": ["s2.out0", "s2.out1"]
+}
