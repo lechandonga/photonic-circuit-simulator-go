@@ -1,0 +1,23 @@
+{
+  "name": "mach-zehnder",
+  "inputs": ["in"],
+  "outputs": ["dump", "out0", "out1"],
+  "devices": [
+    {"id": "bs1", "type": "beamsplitter", "params": {"split_ratio": 0.5}},
+    {"id": "bs2", "type": "beamsplitter", "params": {"split_ratio": 0.5}},
+    {"id": "ps", "type": "phaseshifter", "params": {"phase_deg": 0}},
+    {"id": "wg1", "type": "waveguide"},
+    {"id": "wg2", "type": "waveguide"}
+  ],
+  "connections": [
+    {"from": {"device": "$input", "port": "in"}, "to": {"device": "bs1", "port": "in1"}},
+    {"from": {"device": "bs1", "port": "in2"}, "to": {"device": "$output", "port": "dump"}},
+    {"from": {"device": "bs1", "port": "out1"}, "to": {"device": "ps", "port": "in"}},
+    {"from": {"device": "ps", "port": "out"}, "to": {"device": "wg1", "port": "in"}},
+    {"from": {"device": "wg1", "port": "out"}, "to": {"device": "bs2", "port": "in1"}},
+    {"from": {"device": "bs1", "port": "out2"}, "to": {"device": "wg2", "port": "in"}},
+    {"from": {"device": "wg2", "port": "out"}, "to": {"device": "bs2", "port": "in2"}},
+    {"from": {"device": "bs2", "port": "out1"}, "to": {"device": "$output", "port": "out0"}},
+    {"from": {"device": "bs2", "port": "out2"}, "to": {"device": "$output", "port": "out1"}}
+  ]
+}
